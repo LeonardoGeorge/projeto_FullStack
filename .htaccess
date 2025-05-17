@@ -1,0 +1,18 @@
+RewriteEngine On
+RewriteBase /projeto_FULLSTACK/
+
+# Proteger arquivos sensíveis
+<FilesMatch "\.(env|config\.php|htaccess)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# URL amigável para projetos
+RewriteRule ^projeto/([0-9]+)/?$ project.php?id=$1 [NC,L]
+
+# Prevenir acesso direto a pastas
+Options -Indexes
+
+# Paginação de erro personalizada
+ErrorDocument 404 /404.php
+ErrorDocument 403 /403.php
